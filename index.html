@@ -2,142 +2,37 @@
 <html lang="es">
 <head>
 <meta charset="utf-8">
-<meta name="viewport" content="width=device-width, initial-scale=1">
-
+<meta name="viewport" content="width=device-width,initial-scale=1">
 <title>JMAGIS — Tu pantalla. Tu estilo.</title>
 
 <style>
 *{box-sizing:border-box}
-
-body{
-margin:0;
-background:#07101f;
-color:white;
-font-family:Arial,sans-serif
-}
-
-header{
-padding:20px 6%;
-border-bottom:1px solid #ffffff18;
-font-size:28px;
-font-weight:900;
-letter-spacing:2px
-}
-
-header span{
-color:#55a8ff
-}
-
-.hero{
-padding:70px 6%;
-background:linear-gradient(135deg,#07101f,#102844)
-}
-
-.badge{
-color:#76bfff;
-border:1px solid #76bfff66;
-padding:8px 12px;
-border-radius:20px;
-display:inline-block
-}
-
-h1{
-font-size:58px;
-line-height:.95;
-margin:25px 0
-}
-
-h1 span{
-color:#55a8ff
-}
-
-p{
-color:#aab8cc;
-max-width:600px;
-font-size:18px
-}
-
-.search{
-display:flex;
-max-width:650px;
-margin-top:28px
-}
-
-.search input{
-flex:1;
-padding:16px;
-border:0;
-font-size:16px;
-border-radius:12px 0 0 12px
-}
-
-.search button{
-border:0;
-background:#55a8ff;
-padding:0 20px;
-font-weight:bold;
-border-radius:0 12px 12px 0
-}
-
-.cats{
-padding:25px 6%;
-display:flex;
-gap:10px;
-overflow:auto
-}
-
-.cat{
-background:#12233a;
-padding:11px 15px;
-border-radius:20px;
-white-space:nowrap
-}
-
-section{
-padding:10px 6% 50px
-}
-
-.grid{
-display:grid;
-grid-template-columns:repeat(2,1fr);
-gap:14px
-}
-
-.card{
-height:270px;
-border-radius:15px;
-overflow:hidden;
-position:relative;
-background:#13243a
-}
-
-.card img{
-width:100%;
-height:100%;
-object-fit:cover
-}
-
-.card strong{
-position:absolute;
-bottom:0;
-left:0;
-right:0;
-padding:35px 12px 12px;
-background:linear-gradient(transparent,#000c)
-}
-
-footer{
-text-align:center;
-padding:30px;
-color:#718096;
-border-top:1px solid #ffffff15
-}
-
-@media(min-width:700px){
-.grid{
-grid-template-columns:repeat(4,1fr)
-}
-}
+body{margin:0;background:#07101f;color:#fff;font-family:Arial,sans-serif}
+header{padding:20px 6%;border-bottom:1px solid #ffffff18;font-size:28px;font-weight:900}
+header span{color:#55a8ff}
+.hero{padding:60px 6%;background:linear-gradient(135deg,#07101f,#102844)}
+.badge{color:#76bfff;border:1px solid #76bfff66;padding:8px 12px;border-radius:20px;display:inline-block}
+h1{font-size:clamp(44px,8vw,72px);line-height:.95;margin:25px 0}
+h1 span{color:#55a8ff}
+p{color:#aab8cc;max-width:650px;font-size:18px;line-height:1.5}
+.search{display:flex;max-width:700px;margin-top:28px}
+.search input{flex:1;padding:17px;border:0;font-size:16px;border-radius:12px 0 0 12px;outline:none}
+.search button{border:0;background:#55a8ff;padding:0 22px;font-weight:bold;border-radius:0 12px 12px 0}
+.cats{padding:25px 6%;display:flex;gap:10px;overflow:auto}
+.cat{background:#12233a;padding:12px 16px;border-radius:22px;white-space:nowrap;cursor:pointer}
+.cat.active,.cat:hover{background:#55a8ff;color:#06101e}
+section{padding:10px 6% 60px}
+.top{display:flex;justify-content:space-between;align-items:center}
+.grid{display:grid;grid-template-columns:repeat(2,1fr);gap:14px}
+.card{height:300px;border-radius:17px;overflow:hidden;position:relative;background:#13243a}
+.card img{width:100%;height:100%;object-fit:cover}
+.info{position:absolute;bottom:0;left:0;right:0;padding:50px 13px 13px;background:linear-gradient(transparent,#000e)}
+.info strong{display:block;font-size:18px}
+.info small{color:#b8c8dc}
+.actions{display:flex;gap:8px;margin-top:10px}
+.actions button,.actions a{border:0;background:#fff;color:#07101f;padding:8px 11px;border-radius:9px;font-weight:bold;text-decoration:none;cursor:pointer}
+footer{text-align:center;padding:30px;color:#718096;border-top:1px solid #ffffff15}
+@media(min-width:700px){.grid{grid-template-columns:repeat(4,1fr)}.card{height:350px}}
 </style>
 </head>
 
@@ -148,68 +43,171 @@ J<span>MAGIS</span>
 </header>
 
 <div class="hero">
-
 <span class="badge">WALLPAPERS HD · 4K</span>
 
-<h1>
-Tu pantalla.<br>
-<span>Tu estilo.</span>
-</h1>
+<h1>Tu pantalla.<br><span>Tu estilo.</span></h1>
 
 <p>
-Fondos espectaculares para iPhone, Android, iPad y PC.
-Descubre wallpapers de deportes, gaming, autos, naturaleza y mucho más.
+Descubre fondos espectaculares para iPhone, Android, iPad y PC.
+Gaming, deportes, autos, naturaleza, espacio y mucho más.
 </p>
 
 <div class="search">
-<input type="text" placeholder="Buscar wallpapers...">
-<button>Buscar</button>
+<input id="search" placeholder="Buscar wallpapers...">
+<button onclick="buscar()">Buscar</button>
 </div>
-
 </div>
 
 <div class="cats">
-<div class="cat">🔥 Tendencias</div>
-<div class="cat">⚾ Deportes</div>
-<div class="cat">🎮 Gaming</div>
-<div class="cat">🚗 Autos</div>
-<div class="cat">🌌 Naturaleza</div>
-<div class="cat">🎨 Arte</div>
+<div class="cat active" onclick="filtrar('Todos',this)">✨ Todos</div>
+<div class="cat" onclick="filtrar('Tendencias',this)">🔥 Tendencias</div>
+<div class="cat" onclick="filtrar('Deportes',this)">⚽ Deportes</div>
+<div class="cat" onclick="filtrar('Gaming',this)">🎮 Gaming</div>
+<div class="cat" onclick="filtrar('Autos',this)">🚗 Autos</div>
+<div class="cat" onclick="filtrar('Naturaleza',this)">🌿 Naturaleza</div>
+<div class="cat" onclick="filtrar('Ciudad',this)">🌃 Ciudad</div>
+<div class="cat" onclick="filtrar('Espacio',this)">🚀 Espacio</div>
+<div class="cat" onclick="filtrar('Animales',this)">🐾 Animales</div>
+<div class="cat" onclick="filtrar('Playas',this)">🏖️ Playas</div>
 </div>
 
 <section>
-
-<h2>Destacados</h2>
-
-<div class="grid">
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=700&q=80">
-<strong>Aurora · 4K</strong>
+<div class="top">
+<h2>Wallpapers</h2>
+<span id="count"></span>
 </div>
 
-<div class="card">
-<img src="https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=700&q=80">
-<strong>Montaña · HD</strong>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1518005020951-eccb494ad742?auto=format&fit=crop&w=700&q=80">
-<strong>Arquitectura · 4K</strong>
-</div>
-
-<div class="card">
-<img src="https://images.unsplash.com/photo-1534791547706-6c5e4f9f0b6b?auto=format&fit=crop&w=700&q=80">
-<strong>Espacio · 4K</strong>
-</div>
-
-</div>
-
+<div class="grid" id="grid"></div>
 </section>
 
 <footer>
 © 2026 JMAGIS · Tu pantalla. Tu estilo.
 </footer>
 
+<script>
+
+const fondos=[
+
+["Ciudad Neón","Tendencias","https://images.unsplash.com/photo-1519608487953-e999c86e7455?auto=format&fit=crop&w=900&q=80"],
+
+["Montañas","Naturaleza","https://images.unsplash.com/photo-1500534623283-312aade485b7?auto=format&fit=crop&w=900&q=80"],
+
+["Galaxia","Espacio","https://images.unsplash.com/photo-1462331940025-496dfbfc7564?auto=format&fit=crop&w=900&q=80"],
+
+["Bosque","Naturaleza","https://images.unsplash.com/photo-1493246507139-91e8fad9978e?auto=format&fit=crop&w=900&q=80"],
+
+["Auto Deportivo","Autos","https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=900&q=80"],
+
+["Carretera","Autos","https://images.unsplash.com/photo-1492144534655-ae79c964c9d7?auto=format&fit=crop&w=900&q=80"],
+
+["Playa Tropical","Playas","https://images.unsplash.com/photo-1507525428034-b723cf961d3e?auto=format&fit=crop&w=900&q=80"],
+
+["Océano","Playas","https://images.unsplash.com/photo-1473116763249-2faaef81ccda?auto=format&fit=crop&w=900&q=80"],
+
+["Ciudad de Noche","Ciudad","https://images.unsplash.com/photo-1477959858617-67f85cf4f1df?auto=format&fit=crop&w=900&q=80"],
+
+["Gaming","Gaming","https://images.unsplash.com/photo-1542751371-adc38448a05e?auto=format&fit=crop&w=900&q=80"],
+
+["Estadio","Deportes","https://images.unsplash.com/photo-1461896836934-ffe607ba8211?auto=format&fit=crop&w=900&q=80"],
+
+["Fútbol","Deportes","https://images.unsplash.com/photo-1579952363873-27f3bade9f55?auto=format&fit=crop&w=900&q=80"],
+
+["León","Animales","https://images.unsplash.com/photo-1549366021-9f761d450615?auto=format&fit=crop&w=900&q=80"],
+
+["Lobo","Animales","https://images.unsplash.com/photo-1564466809058-bf4114d55352?auto=format&fit=crop&w=900&q=80"]
+
+];
+
+let categoria="Todos";
+
+function mostrar(){
+
+let texto=document.getElementById("search").value.toLowerCase();
+
+let lista=fondos.filter(f=>
+(categoria==="Todos"||f[1]===categoria)&&
+(f[0].toLowerCase().includes(texto)||f[1].toLowerCase().includes(texto))
+);
+
+let grid=document.getElementById("grid");
+grid.innerHTML="";
+
+document.getElementById("count").textContent=lista.length+" fondos";
+
+lista.forEach(f=>{
+
+let favorito=localStorage.getItem("fav"+f[0]);
+
+grid.innerHTML+=`
+
+<div class="card">
+
+<img src="${f[2]}" alt="${f[0]}" loading="lazy">
+
+<div class="info">
+
+<strong>${f[0]}</strong>
+<small>${f[1]} · HD / 4K</small>
+
+<div class="actions">
+
+<a href="${f[2]}" target="_blank">⬇️ Descargar</a>
+
+<button onclick="fav('${f[0]}')">
+${favorito?"❤️":"🤍"} Favorito
+</button>
+
+</div>
+</div>
+</div>
+
+`;
+
+});
+
+}
+
+function filtrar(cat,boton){
+
+categoria=cat;
+
+document.querySelectorAll(".cat").forEach(x=>x.classList.remove("active"));
+
+boton.classList.add("active");
+
+mostrar();
+
+}
+
+function buscar(){
+
+mostrar();
+
+document.getElementById("grid").scrollIntoView({
+behavior:"smooth"
+});
+
+}
+
+function fav(nombre){
+
+let clave="fav"+nombre;
+
+if(localStorage.getItem(clave)){
+localStorage.removeItem(clave);
+}else{
+localStorage.setItem(clave,"1");
+}
+
+mostrar();
+
+}
+
+document.getElementById("search").addEventListener("input",mostrar);
+
+mostrar();
+
+</script>
+
 </body>
-  </html>
+</html>
